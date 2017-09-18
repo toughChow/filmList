@@ -1,0 +1,51 @@
+    body {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .panel {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    table tr {
+        height: 45px;
+    }
+
+    table th {
+        border-bottom: 2px solid #ddd;
+    }
+
+    table thead {
+        width: 180px;
+    }
+
+    table td {
+        text-align: center;
+    }
+
+    .btn1 {
+        width: 430px;
+        height: 40px;
+        color: white;
+        border: 0;
+        background-color: #74B566;
+    }
+
+    .btn2 {
+        width: 430px;
+        height: 40px;
+        color: white;
+        border: 0;
+        background-color: #C05551;
+    }
+
+    .checkBox {
+        background-color: #fff;
+        width: 20px;
+        height: 20px;
+    }

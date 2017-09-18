@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="plugins/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+    body {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .panel {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    table tr {
+        height: 45px;
+    }
+
+    table th {
+        border-bottom: 2px solid #ddd;
+    }
+
+    table thead {
+        width: 180px;
+    }
+
+    table td {
+        text-align: center;
+    }
+
+    .btn1 {
+        width: 430px;
+        height: 40px;
+        color: white;
+        border: 0;
+        background-color: #74B566;
+    }
+
+    .btn2 {
+        width: 430px;
+        height: 40px;
+        color: white;
+        border: 0;
+        background-color: #C05551;
+    }
+
+    .checkBox {
+        background-color: #fff;
+        width: 20px;
+        height: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="panel">
+        <table cellspacing="0">
+            <thead>
+                <th id="opt">操作</th>
+                <th>名称</th>
+                <th>主演</th>
+                <th>导演</th>
+                <th>影片时长</th>
+            </thead>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" class="checkBox">
+                </td>
+                <td>蜘蛛侠:英雄归来</td>
+                <td>汤姆·霍兰德</td>
+                <td>乔·沃茨</td>
+                <td>133分钟</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" class="checkBox">
+                </td>
+                <td>敦刻尔克</td>
+                <td>菲恩·怀特海德</td>
+                <td>克里斯托弗·诺兰</td>
+                <td>107分钟</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" class="checkBox">
+                </td>
+                <td>银魂</td>
+                <td>小栗旬</td>
+                <td>福田雄一</td>
+                <td>130分钟</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" class="checkBox">
+                </td>
+                <td>星际特工:千星之城</td>
+                <td>戴恩·德哈恩</td>
+                <td>吕克·贝松</td>
+                <td>137分钟</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" class="checkBox">
+                </td>
+                <td>声之形</td>
+                <td>入野自由</td>
+                <td>山田商子</td>
+                <td>111分钟</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <input type="button" name="" value="恢复" class="btn1" /> &emsp;
+                    <input type="button" name="" value="删除" class="btn2" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        // 设置行级元素背景颜色
+        $("tr:odd").css({ "background-color": "#F9F9F9" });
+
+        // 全选 全不选操作
+        $('#opt').on("click", function() {
+            var count = 0; // 计数选中行数目
+            $('.checkBox').each(function() {
+                if ($(this).prop("checked") == true) {
+                    count = count + 1; // 若选中 则加1
+                }
+            });
+            var count2 = $('.checkBox').length; // 得到所有行数目	
+            if (count != count2) {
+                $('.checkBox').prop("checked", true);
+            } else {
+                $('.checkBox').prop("checked", false);
+            }
+        });
+
+        // 单行选中
+        $("tr").last().prevAll().children().find("input").parent().siblings().on("click", function() { // td
+            $judge = $(this).parent().children().first().children().prop("checked");
+            if ($judge) {
+                $(this).parent().children().first().children().prop("checked", false);
+            } else {
+                $(this).parent().children().first().children().prop("checked", true);
+            }
+        });
+
+        // 全局变量 存储删除数据
+        $deleteData = null;
+
+        // 删除选中行
+        $('.btn2').on("click", function() {
+            $count = 0;
+            $("tr").each(function() {
+                $judge = $(this).children().first().children().prop("checked");
+                if ($judge) { // 判断是否存在选中行
+                    $count++;
+                }
+            });
+            if ($count == 0) {
+                alert("请选择待删除项!");
+            } else {
+                $flag = window.confirm("确定删除选中项?");
+                if (!$flag) {
+                    return false;
+                } else { // 确认删除 ，执行删除操作
+                    $("tr").each(function() {
+                        $judge = $(this).children().first().children().prop("checked");
+                        if ($judge) {
+                            $(this).hide();
+                            $(this).children().first().children().prop("checked", false);
+                            // $deleteData = $(this).detach();
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+        // 恢复选中行
+        $('.btn1').on("click", function() {
+            $('tr').show();
+            // $("tr").last().prev().append($deleteData);
+        });
+    });
+    </script>
+</body>
+
+</html>

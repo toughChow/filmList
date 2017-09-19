@@ -71,6 +71,9 @@ $(function() {
     $('.btn1').mouseover(function() {
         $(this).css("background-color", "#819F7D");
     });
+    $('.btn1').mouseleave(function() {
+        $(this).css("background-color", "#74B566");
+    });
     $('.btn1').mousedown(function() {
         $(this).css("background-color", "#819F7D");
     });
@@ -80,6 +83,9 @@ $(function() {
     /*由于btn2点击后要弹出窗口 所以该效果看不太明显*/
     $('.btn2').mouseover(function() {
         $(this).css("background-color", "#A86F68");
+    });
+    $('.btn2').mouseleave(function() {
+        $(this).css("background-color", "#C05551");
     });
     $('.btn2').mousedown(function() {
         $(this).css("background-color", "#A86F68");
